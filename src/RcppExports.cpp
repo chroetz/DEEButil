@@ -11,14 +11,14 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
 // whichMinDist
-int whichMinDist(NumericMatrix x, NumericVector y);
-RcppExport SEXP _DEEButil_whichMinDist(SEXP xSEXP, SEXP ySEXP) {
+int whichMinDist(NumericMatrix target, NumericVector query);
+RcppExport SEXP _DEEButil_whichMinDist(SEXP targetSEXP, SEXP querySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type y(ySEXP);
-    rcpp_result_gen = Rcpp::wrap(whichMinDist(x, y));
+    Rcpp::traits::input_parameter< NumericMatrix >::type target(targetSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type query(querySEXP);
+    rcpp_result_gen = Rcpp::wrap(whichMinDist(target, query));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -149,6 +149,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// evaluateMonomials
+NumericMatrix evaluateMonomials(NumericMatrix x, IntegerMatrix degrees);
+RcppExport SEXP _DEEButil_evaluateMonomials(SEXP xSEXP, SEXP degreesSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
+    Rcpp::traits::input_parameter< IntegerMatrix >::type degrees(degreesSEXP);
+    rcpp_result_gen = Rcpp::wrap(evaluateMonomials(x, degrees));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_DEEButil_whichMinDist", (DL_FUNC) &_DEEButil_whichMinDist, 2},
@@ -162,6 +174,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_DEEButil_expKernelMatrix1D", (DL_FUNC) &_DEEButil_expKernelMatrix1D, 3},
     {"_DEEButil_expKernelVectors1D", (DL_FUNC) &_DEEButil_expKernelVectors1D, 3},
     {"_DEEButil_expKernelDerivVectors1D", (DL_FUNC) &_DEEButil_expKernelDerivVectors1D, 3},
+    {"_DEEButil_evaluateMonomials", (DL_FUNC) &_DEEButil_evaluateMonomials, 2},
     {NULL, NULL, 0}
 };
 

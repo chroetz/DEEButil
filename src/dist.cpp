@@ -1,10 +1,16 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
+//' Get the index of the closest row.
+//'
+//' @param target A n x p matrix.
+//' @param query A vector of length p.
+//' @returns The smallest index of a row of target that has the smallest
+//'   Euclidean distance to query.
 //' @export
 // [[Rcpp::export]]
-int whichMinDist(NumericMatrix x, NumericVector y) {
-  int nrow = x.nrow(), ncol = x.ncol();
+int whichMinDist(NumericMatrix target, NumericVector query) {
+  int nrow = target.nrow(), ncol = target.ncol();
   double minDist = INFINITY;
   double minIdx;
   double dst;
@@ -12,7 +18,7 @@ int whichMinDist(NumericMatrix x, NumericVector y) {
   for (int i = 0; i < nrow; ++i) {
     dst = 0;
     for (int j = 0; j < ncol; ++j) {
-      v = x(i, j) - y(j);
+      v = target(i, j) - query(j);
       dst += v*v;
     }
     if (dst < minDist) {
