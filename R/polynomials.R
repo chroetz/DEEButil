@@ -5,6 +5,7 @@ getMonomialExponents <- function(dimension, degree) {
   return(degVecs)
 }
 
-numberOfTermsInPoly <- \(polyDeg, d) {
-  sum(sapply(0:polyDeg, \(deg) choose(d+deg-1, deg)))
+#' @export
+numberOfTermsInPoly <- \(degree, dim) {
+  sum(sapply(0:degree, \(deg) choose(dim+deg-1, deg)))
 }
