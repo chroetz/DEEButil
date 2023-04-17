@@ -1,5 +1,10 @@
 #' @export
 saveSolve <- function(A, b) {
+  if (length(A) == 0) {
+    res <- double(0)
+    dim(res) <- c(0, NCOL(b))
+    return(res)
+  }
   res <- tryCatch(
     solve.default(A, b),
     error = function(cond) cond)
