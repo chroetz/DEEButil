@@ -149,6 +149,32 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// minDistTimeState
+NumericVector minDistTimeState(NumericMatrix query, NumericMatrix target, NumericVector time, double scale);
+RcppExport SEXP _DEEButil_minDistTimeState(SEXP querySEXP, SEXP targetSEXP, SEXP timeSEXP, SEXP scaleSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type query(querySEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type target(targetSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type time(timeSEXP);
+    Rcpp::traits::input_parameter< double >::type scale(scaleSEXP);
+    rcpp_result_gen = Rcpp::wrap(minDistTimeState(query, target, time, scale));
+    return rcpp_result_gen;
+END_RCPP
+}
+// minDist
+NumericVector minDist(NumericMatrix query, NumericMatrix target);
+RcppExport SEXP _DEEButil_minDist(SEXP querySEXP, SEXP targetSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type query(querySEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type target(targetSEXP);
+    rcpp_result_gen = Rcpp::wrap(minDist(query, target));
+    return rcpp_result_gen;
+END_RCPP
+}
 // evaluateMonomials
 NumericMatrix evaluateMonomials(NumericMatrix x, IntegerMatrix degrees);
 RcppExport SEXP _DEEButil_evaluateMonomials(SEXP xSEXP, SEXP degreesSEXP) {
@@ -174,6 +200,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_DEEButil_expKernelMatrix1D", (DL_FUNC) &_DEEButil_expKernelMatrix1D, 3},
     {"_DEEButil_expKernelVectors1D", (DL_FUNC) &_DEEButil_expKernelVectors1D, 3},
     {"_DEEButil_expKernelDerivVectors1D", (DL_FUNC) &_DEEButil_expKernelDerivVectors1D, 3},
+    {"_DEEButil_minDistTimeState", (DL_FUNC) &_DEEButil_minDistTimeState, 4},
+    {"_DEEButil_minDist", (DL_FUNC) &_DEEButil_minDist, 2},
     {"_DEEButil_evaluateMonomials", (DL_FUNC) &_DEEButil_evaluateMonomials, 2},
     {NULL, NULL, 0}
 };

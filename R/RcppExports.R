@@ -62,6 +62,14 @@ expKernelDerivVectors1D <- function(x, xout, bandwidth) {
     .Call(`_DEEButil_expKernelDerivVectors1D`, x, xout, bandwidth)
 }
 
+minDistTimeState <- function(query, target, time, scale) {
+    .Call(`_DEEButil_minDistTimeState`, query, target, time, scale)
+}
+
+minDist <- function(query, target) {
+    .Call(`_DEEButil_minDist`, query, target)
+}
+
 #' Evaluate Monomials.
 #'
 #' @param x A n x d matrix. The n input vectors, each of dimension d.
