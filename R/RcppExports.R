@@ -62,10 +62,12 @@ expKernelDerivVectors1D <- function(x, xout, bandwidth) {
     .Call(`_DEEButil_expKernelDerivVectors1D`, x, xout, bandwidth)
 }
 
+#' @export
 minDistTimeState <- function(query, target, time, scale) {
     .Call(`_DEEButil_minDistTimeState`, query, target, time, scale)
 }
 
+#' @export
 minDist <- function(query, target) {
     .Call(`_DEEButil_minDist`, query, target)
 }

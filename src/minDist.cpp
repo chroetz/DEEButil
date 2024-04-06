@@ -1,6 +1,7 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
+//' @export
 // [[Rcpp::export]]
 NumericVector minDistTimeState(NumericMatrix query, NumericMatrix target, NumericVector time, double scale) {
   int n = query.nrow(), d = query.ncol();
@@ -55,6 +56,7 @@ NumericVector minDistTimeState(NumericMatrix query, NumericMatrix target, Numeri
 }
 
 
+//' @export
 // [[Rcpp::export]]
 NumericVector minDist(NumericMatrix query, NumericMatrix target) {
   int n = query.nrow(), d = query.ncol();
