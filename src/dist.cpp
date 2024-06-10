@@ -12,7 +12,7 @@ using namespace Rcpp;
 int whichMinDist(NumericMatrix target, NumericVector query) {
   int nrow = target.nrow(), ncol = target.ncol();
   double minDist = INFINITY;
-  double minIdx;
+  double minIdx = -1;
   double dst;
   double v;
   for (int i = 0; i < nrow; ++i) {

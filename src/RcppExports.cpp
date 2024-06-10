@@ -46,6 +46,44 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// distSqrToSeg
+double distSqrToSeg(NumericVector u, NumericVector v0, NumericVector v1);
+RcppExport SEXP _DEEButil_distSqrToSeg(SEXP uSEXP, SEXP v0SEXP, SEXP v1SEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type u(uSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type v0(v0SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type v1(v1SEXP);
+    rcpp_result_gen = Rcpp::wrap(distSqrToSeg(u, v0, v1));
+    return rcpp_result_gen;
+END_RCPP
+}
+// distSqrToPwLin
+NumericVector distSqrToPwLin(NumericMatrix path, NumericVector query);
+RcppExport SEXP _DEEButil_distSqrToPwLin(SEXP pathSEXP, SEXP querySEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type query(querySEXP);
+    rcpp_result_gen = Rcpp::wrap(distSqrToPwLin(path, query));
+    return rcpp_result_gen;
+END_RCPP
+}
+// whichMinDistToPwLin
+double whichMinDistToPwLin(NumericMatrix path, NumericVector id, NumericVector query);
+RcppExport SEXP _DEEButil_whichMinDistToPwLin(SEXP pathSEXP, SEXP idSEXP, SEXP querySEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type id(idSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type query(querySEXP);
+    rcpp_result_gen = Rcpp::wrap(whichMinDistToPwLin(path, id, query));
+    return rcpp_result_gen;
+END_RCPP
+}
 // expKernelMatrix
 NumericMatrix expKernelMatrix(NumericMatrix state, double bandwidth, double regulation);
 RcppExport SEXP _DEEButil_expKernelMatrix(SEXP stateSEXP, SEXP bandwidthSEXP, SEXP regulationSEXP) {
@@ -192,6 +230,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"_DEEButil_whichMinDist", (DL_FUNC) &_DEEButil_whichMinDist, 2},
     {"_DEEButil_distToVec", (DL_FUNC) &_DEEButil_distToVec, 2},
     {"_DEEButil_distSqrToVec", (DL_FUNC) &_DEEButil_distSqrToVec, 2},
+    {"_DEEButil_distSqrToSeg", (DL_FUNC) &_DEEButil_distSqrToSeg, 3},
+    {"_DEEButil_distSqrToPwLin", (DL_FUNC) &_DEEButil_distSqrToPwLin, 2},
+    {"_DEEButil_whichMinDistToPwLin", (DL_FUNC) &_DEEButil_whichMinDistToPwLin, 3},
     {"_DEEButil_expKernelMatrix", (DL_FUNC) &_DEEButil_expKernelMatrix, 3},
     {"_DEEButil_expKernelVector", (DL_FUNC) &_DEEButil_expKernelVector, 3},
     {"_DEEButil_expKernelVectors", (DL_FUNC) &_DEEButil_expKernelVectors, 3},

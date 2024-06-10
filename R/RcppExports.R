@@ -23,6 +23,21 @@ distSqrToVec <- function(target, query) {
 }
 
 #' @export
+distSqrToSeg <- function(u, v0, v1) {
+    .Call(`_DEEButil_distSqrToSeg`, u, v0, v1)
+}
+
+#' @export
+distSqrToPwLin <- function(path, query) {
+    .Call(`_DEEButil_distSqrToPwLin`, path, query)
+}
+
+#' @export
+whichMinDistToPwLin <- function(path, id, query) {
+    .Call(`_DEEButil_whichMinDistToPwLin`, path, id, query)
+}
+
+#' @export
 expKernelMatrix <- function(state, bandwidth, regulation) {
     .Call(`_DEEButil_expKernelMatrix`, state, bandwidth, regulation)
 }
