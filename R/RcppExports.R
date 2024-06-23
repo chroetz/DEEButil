@@ -97,3 +97,13 @@ evaluateMonomials <- function(x, degrees) {
     .Call(`_DEEButil_evaluateMonomials`, x, degrees)
 }
 
+#' Get exponents of a degree deg polynomial in dim dimensions.
+#'
+#' @param dimension A positive integer. The dimension of the space.
+#' @param degree A nonegative integer. The degreee of the polynomial.
+#' @returns A p x d integer matrix. The exponents for the p = (dim + deg choose deg) terms of the polynomial.
+#' @export
+getMonomialExponents <- function(dimension, degree) {
+    .Call(`_DEEButil_getMonomialExponents`, dimension, degree)
+}
+

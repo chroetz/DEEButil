@@ -1,6 +1,8 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
+#include <vector>
+
 //' Evaluate Monomials.
 //'
 //' @param x A n x d matrix. The n input vectors, each of dimension d.
@@ -40,6 +42,7 @@ NumericMatrix evaluateMonomials(NumericMatrix x, IntegerMatrix degrees) {
     for (int k = 0; k < p; ++k) {
       v = 1;
       for (int j = 0; j < d; ++j) {
+        if (degrees(k, j) == 0) continue;
         NumericMatrix pwrs = powers[j];
         v *= pwrs(i, degrees(k, j));
       }
@@ -48,4 +51,63 @@ NumericMatrix evaluateMonomials(NumericMatrix x, IntegerMatrix degrees) {
   }
 
   return out;
+}
+
+
+// A function to calculate binomial coefficient
+int binomialCoefficient(int n, int k) {
+    if (k > n) return 0;
+    if (k == 0 || k == n) return 1;
+
+    // Take advantage of symmetry property: C(n, k) == C(n, n-k)
+    if (k > n - k) k = n - k;
+
+    int result = 1;
+    for (int i = 0; i < k; ++i) {
+        result *= (n - i);
+        result /= (i + 1);
+    }
+    return result;
+}
+
+
+
+// A recursive function to generate all combinations of exponents
+void generateExponents(int d, int max_degree, std::vector<int>& current, int current_sum, std::vector<std::vector<int>>& result) {
+     if (current.size() == d) {
+        result.push_back(current);
+        return;
+    }
+
+    for (int i = 0; i <= max_degree - current_sum; ++i) {
+        current.push_back(i);
+        generateExponents(d, max_degree, current, current_sum + i, result);
+        current.pop_back();
+    }
+}
+
+
+//' Get exponents of a degree deg polynomial in dim dimensions.
+//'
+//' @param dimension A positive integer. The dimension of the space.
+//' @param degree A nonegative integer. The degreee of the polynomial.
+//' @returns A p x d integer matrix. The exponents for the p = (dim + deg choose deg) terms of the polynomial.
+//' @export
+// [[Rcpp::export]]
+IntegerMatrix getMonomialExponents(int dimension, int degree) {
+    std::vector<std::vector<int>> result;
+    std::vector<int> current;
+    generateExponents(dimension, degree, current, 0, result);
+
+    // Convert result to Rcpp IntegerMatrix
+    int n_rows = result.size();
+    IntegerMatrix mat(n_rows, dimension);
+
+    for (int i = 0; i < n_rows; ++i) {
+        for (int j = 0; j < dimension; ++j) {
+            mat(i, j) = result[i][j];
+        }
+    }
+
+    return mat;
 }

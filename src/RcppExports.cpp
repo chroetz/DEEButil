@@ -225,6 +225,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// getMonomialExponents
+IntegerMatrix getMonomialExponents(int dimension, int degree);
+RcppExport SEXP _DEEButil_getMonomialExponents(SEXP dimensionSEXP, SEXP degreeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type dimension(dimensionSEXP);
+    Rcpp::traits::input_parameter< int >::type degree(degreeSEXP);
+    rcpp_result_gen = Rcpp::wrap(getMonomialExponents(dimension, degree));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_DEEButil_whichMinDist", (DL_FUNC) &_DEEButil_whichMinDist, 2},
@@ -244,6 +256,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_DEEButil_minDistTimeState", (DL_FUNC) &_DEEButil_minDistTimeState, 4},
     {"_DEEButil_minDist", (DL_FUNC) &_DEEButil_minDist, 2},
     {"_DEEButil_evaluateMonomials", (DL_FUNC) &_DEEButil_evaluateMonomials, 2},
+    {"_DEEButil_getMonomialExponents", (DL_FUNC) &_DEEButil_getMonomialExponents, 2},
     {NULL, NULL, 0}
 };
 
