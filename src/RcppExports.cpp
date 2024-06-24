@@ -84,6 +84,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// fast_exp_neg_sq
+NumericVector fast_exp_neg_sq(NumericVector x);
+RcppExport SEXP _DEEButil_fast_exp_neg_sq(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(fast_exp_neg_sq(x));
+    return rcpp_result_gen;
+END_RCPP
+}
 // expKernelMatrix
 NumericMatrix expKernelMatrix(NumericMatrix state, double bandwidth, double regulation);
 RcppExport SEXP _DEEButil_expKernelMatrix(SEXP stateSEXP, SEXP bandwidthSEXP, SEXP regulationSEXP) {
@@ -245,6 +256,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_DEEButil_distSqrToSeg", (DL_FUNC) &_DEEButil_distSqrToSeg, 3},
     {"_DEEButil_distSqrToPwLin", (DL_FUNC) &_DEEButil_distSqrToPwLin, 2},
     {"_DEEButil_whichMinDistToPwLin", (DL_FUNC) &_DEEButil_whichMinDistToPwLin, 3},
+    {"_DEEButil_fast_exp_neg_sq", (DL_FUNC) &_DEEButil_fast_exp_neg_sq, 1},
     {"_DEEButil_expKernelMatrix", (DL_FUNC) &_DEEButil_expKernelMatrix, 3},
     {"_DEEButil_expKernelVector", (DL_FUNC) &_DEEButil_expKernelVector, 3},
     {"_DEEButil_expKernelVectors", (DL_FUNC) &_DEEButil_expKernelVectors, 3},

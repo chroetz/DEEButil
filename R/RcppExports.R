@@ -38,6 +38,11 @@ whichMinDistToPwLin <- function(path, id, query) {
 }
 
 #' @export
+fast_exp_neg_sq <- function(x) {
+    .Call(`_DEEButil_fast_exp_neg_sq`, x)
+}
+
+#' @export
 expKernelMatrix <- function(state, bandwidth, regulation) {
     .Call(`_DEEButil_expKernelMatrix`, state, bandwidth, regulation)
 }
