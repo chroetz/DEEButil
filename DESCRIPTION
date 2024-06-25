@@ -12,6 +12,7 @@ RoxygenNote: 7.3.1
 LinkingTo: 
     Rcpp
 Imports: 
+    jsonlite,
     Rcpp
 Suggests: 
     testthat (>= 3.0.0)
