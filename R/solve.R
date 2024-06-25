@@ -5,6 +5,10 @@ saveSolve <- function(A, b) {
     dim(res) <- c(0, NCOL(b))
     return(res)
   }
+  if (all(A == 0)) {
+    b[] <- NA_real_
+    return(b)
+  }
   res <- tryCatch(
     solve.default(A, b),
     error = function(cond) cond)
